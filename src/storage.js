@@ -42,7 +42,7 @@ Storage.prototype.save = function() {
   } catch (e) { this.memory = value; }
 };
 Storage.prototype.get = function(key) { return this.state.records[key] || null; };
-Storage.prototype.all = function() { var out={}; Object.keys(this.state.records).forEach(function(k){out[k]=this.state.records[k];}); return out; };
+Storage.prototype.all = function() { var out={}, self=this; Object.keys(this.state.records).forEach(function(k){out[k]=self.state.records[k];}); return out; };
 Storage.prototype.put = function(key, record) {
   if (!key || !record) return null;
   var old = this.state.records[key];

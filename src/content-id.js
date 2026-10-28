@@ -23,16 +23,25 @@ function parseEpisode(text) {
 
 function identify(input) {
   input = input || {};
-  var data = input.data || input.card || input.object || input;
+  var data = input.data || input.object || input;
+  // Player:start carries the TMDB card in `movie` and playback fields next to it.
+  // Keep the card's id while accepting season/file fields from the outer event.
+  if ((input.movie || input.card || data.movie || data.card) && (data === input || data.movie || data.card)) {
+    var sourceCard = input.movie || input.card || data.movie || data.card;
+    var merged = {};
+    Object.keys(sourceCard).forEach(function(k){ merged[k] = sourceCard[k]; });
+    ['season','season_number','episode','episode_number','file','filename','path','name','title'].forEach(function(k){ if(input[k] != null && merged[k] == null) merged[k] = input[k]; });
+    data = merged;
+  }
   var media = input.media || data.media || {};
-  var tmdbId = number(pick(data, ['tmdb_id','tmdbId','id_tmdb'])) || number(pick(media, ['tmdb_id','tmdbId','id_tmdb']));
+  var tmdbId = number(pick(data, ['tmdb_id','tmdbId','id_tmdb','id'])) || number(pick(media, ['tmdb_id','tmdbId','id_tmdb','id']));
   var type = String(pick(data, ['type','media_type','contentType']) || pick(media, ['type','media_type']) || '').toLowerCase();
   if (type === 'movie' || type === 'film') type = 'movie';
   else if (type === 'tv' || type === 'show' || type === 'serial' || type === 'series') type = 'tv';
   else type = (pick(data, ['seasons','number_of_seasons','first_air_date']) || pick(input, ['season','season_number','episode','episode_number'])) ? 'tv' : 'movie';
   var season = number(pick(input, ['season','season_number'])) || number(pick(data, ['season','season_number'])) || number(pick(media, ['season','season_number']));
   var episode = number(pick(input, ['episode','episode_number'])) || number(pick(data, ['episode','episode_number'])) || number(pick(media, ['episode','episode_number']));
-  var texts = [pick(input, ['file','filename','name']), pick(data, ['file','filename','name','title']), pick(media, ['file','filename','name'])];
+  var texts = [pick(input, ['file','filename','path','name']), pick(data, ['file','filename','path','name','title']), pick(media, ['file','filename','name'])];
   for (var i = 0; i < texts.length && !(season && episode); i++) {
     var parsed = parseEpisode(texts[i]);
     if (!season) season = parsed.season;
