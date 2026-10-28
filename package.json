@@ -1,0 +1,11 @@
+{
+  "name": "lampa-progress-memory",
+  "version": "1.0.0",
+  "description": "Independent watch progress memory plugin for Lampa",
+  "main": "src/plugin.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "license": "MIT"
+}

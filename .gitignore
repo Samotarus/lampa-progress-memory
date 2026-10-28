@@ -1,0 +1,20 @@
+node_modules/
+coverage/
+*.log
+
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# OS/editor/temp files
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+*.swp
+.idea/
+.vscode/

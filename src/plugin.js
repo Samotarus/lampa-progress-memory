@@ -1,0 +1,13 @@
+'use strict';
+var Storage=require('./storage').Storage, Tracker=require('./tracker').Tracker, Adapter=require('./lampa-adapter').Adapter, UI=require('./ui').UI, Settings=require('./settings').Settings;
+var api={version:'1.0.0',storage:null,tracker:null,settings:null,adapter:null,ui:null,initialized:false};
+api.init=function(root){if(api.initialized)return api;root=root||((typeof window!=='undefined')?window:{});var L=root.Lampa||{};api.settings=new Settings(L);api.storage=new Storage({lampa:L});api.tracker=new Tracker(api.storage,{threshold:api.settings.get('threshold'),interval:api.settings.get('interval'),seekProtection:api.settings.get('seekProtection')});api.adapter=new Adapter(L,api.tracker);api.adapter.init();api.ui=new UI(L,api.storage,api.tracker,api.settings);api.ui.init();api.settings.init();api.initialized=true;return api;};
+api.identify=require('./content-id').identify;
+api.get=function(key){return api.storage&&api.storage.get(key);};
+api.export=function(){return api.storage.export();};
+api.import=function(v,merge){return api.storage.import(v,merge!==false);};
+api.clear=function(){return api.storage.clear();};
+api.mark=function(meta,done){return api.tracker.mark(meta,done);};
+api.setProgress=function(meta,percent,duration){return api.tracker.setProgress(meta,percent,duration);};
+api.remove=function(meta){var id=require('./content-id').identify(meta);if(id.valid&&api.storage){api.storage.remove(id.key);return true;}return false;};
+module.exports=api;
