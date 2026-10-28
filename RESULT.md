@@ -30,4 +30,4 @@
 
 Репозиторий опубликован: https://github.com/Samotarus/lampa-progress-memory
 
-После включения GitHub Pages из ветки `main` (корень `/`) файл будет доступен по адресу `https://samotarus.github.io/lampa-progress-memory/progress.js`. Добавьте этот URL в Lampa через **Настройки → Расширения → Добавить плагин**. До включения Pages используйте raw URL: `https://raw.githubusercontent.com/Samotarus/lampa-progress-memory/main/progress.js`.
+GitHub Pages включён из ветки `main` (корень `/`) и проверен: `https://samotarus.github.io/lampa-progress-memory/progress.js` отдаёт версию 1.1.0. Добавьте этот URL в Lampa через **Настройки → Расширения → Добавить плагин**. Raw URL также доступен: `https://raw.githubusercontent.com/Samotarus/lampa-progress-memory/main/progress.js`.
