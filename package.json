@@ -1,6 +1,6 @@
 {
   "name": "lampa-progress-memory",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Independent watch progress memory plugin for Lampa",
   "main": "src/plugin.js",
   "scripts": {
