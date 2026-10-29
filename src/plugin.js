@@ -1,6 +1,6 @@
 'use strict';
 var Storage=require('./storage').Storage, Tracker=require('./tracker').Tracker, Adapter=require('./lampa-adapter').Adapter, UI=require('./ui').UI, Settings=require('./settings').Settings;
-var api={version:'1.1.1',storage:null,tracker:null,settings:null,adapter:null,ui:null,initialized:false};
+var api={version:'1.1.2',storage:null,tracker:null,settings:null,adapter:null,ui:null,initialized:false};
 api.init=function(root){if(api.initialized)return api;root=root||((typeof window!=='undefined')?window:{});var L=root.Lampa||{};api.settings=new Settings(L);api.storage=new Storage({lampa:L});api.tracker=new Tracker(api.storage,{threshold:api.settings.get('threshold'),interval:api.settings.get('interval'),seekProtection:api.settings.get('seekProtection')});api.adapter=new Adapter(L,api.tracker);if(api.settings.get('enabled'))api.adapter.init();api.ui=new UI(L,api.storage,api.tracker,api.settings);if(api.settings.get('enabled'))api.ui.init();api.settings.init(function(){return api.diagnostics();},function(name,value){if(name==='threshold'||name==='interval'||name==='seekProtection'){var o={};o[name]=value;api.tracker.configure(o);}});api.initialized=true;return api;};
 api.identify=require('./content-id').identify;
 api.get=function(key){return api.storage&&api.storage.get(key);};

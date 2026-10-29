@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const root = path.resolve(__dirname, '..');
 const files = ['src/content-id.js','src/storage.js','src/tracker.js','src/lampa-adapter.js','src/ui.js','src/settings.js','src/plugin.js'];
-let out = '/* Lampa Progress Memory 1.1.1 - generated standalone plugin */\n(function(root){\n\'use strict\';\nvar modules={};\n';
+let out = '/* Lampa Progress Memory 1.1.2 - generated standalone plugin */\n(function(root){\n\'use strict\';\nvar modules={};\n';
 files.forEach((file) => {
   const name = './' + file.replace(/^src\//, '').replace(/\.js$/, '');
   let code = fs.readFileSync(path.join(root, file), 'utf8');

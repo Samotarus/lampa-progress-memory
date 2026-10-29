@@ -1,4 +1,4 @@
-# Lampa Progress Memory 1.1.1
+# Lampa Progress Memory 1.1.2
 
 Автономный плагин Lampa, сохраняющий прогресс просмотра по TMDB ID и (для сериалов) сезону/серии. История не зависит от magnet-ссылки, torrent hash, качества или имени файла.
 
@@ -40,3 +40,5 @@ npm test
 npm run build
 ```
 
+
+Для версий, в которых PlayerVideo создаётся с задержкой, адаптер 1.1.2 повторно подключается после ready и слушает HTML5 video напрямую как fallback.
