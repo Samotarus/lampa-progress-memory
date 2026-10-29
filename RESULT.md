@@ -31,6 +31,6 @@
 
 Репозиторий опубликован: https://github.com/Samotarus/lampa-progress-memory
 
-GitHub Pages включён из ветки `main` (корень `/`) и проверен: `https://samotarus.github.io/lampa-progress-memory/progress.js` отдаёт актуальную версию. Добавьте этот URL в Lampa через **Настройки → Расширения → Добавить плагин**. Raw URL также доступен: `https://raw.githubusercontent.com/Samotarus/lampa-progress-memory/main/progress.js`.
+GitHub Pages включён из ветки `main` (корень `/`) и проверен. Единственный постоянный URL для установки и обновлений: `https://samotarus.github.io/lampa-progress-memory/progress.js`. Добавьте его в Lampa через **Настройки → Расширения → Добавить плагин**. Версионные query-параметры больше не требуются; если конкретная сборка Lampa держит старый кэш, достаточно удалить расширение и добавить этот же URL заново.
 
 В версии 1.1.2 исправлен сценарий, при котором PlayerVideo появлялся после Player:start: добавлены повторная подписка после ready и прямые HTML5 video-события (timeupdate/pause/ended).
